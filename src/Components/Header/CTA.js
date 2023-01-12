@@ -9,8 +9,10 @@ const CTA = () => {
           Download CV
         </a>
       </button>
-      <button className="bg-main text-black rounded-lg p-3 duration-200 hover:scale-[1.05]">
-        <a href="#contact">Let's talk</a>
+      <button className="bg-main rounded-lg p-3 duration-200 hover:scale-[1.05]">
+        <a href="#contact" className="text-black">
+          Let's talk
+        </a>
       </button>
     </div>
   );

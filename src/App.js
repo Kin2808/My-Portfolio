@@ -1,8 +1,8 @@
 import "./App.css";
 
 import Header from "./Components/Header/Header";
-import Nav from "./Components/Nav";
-import About from "./Components/About";
+import Nav from "./Components/Nav/Nav";
+import About from "./Components/About/About";
 import Experience from "./Components/Experience";
 import Services from "./Components/Services";
 import Portfolio from "./Components/Portfolio";
