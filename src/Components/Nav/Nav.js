@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUser, AiOutlineProject } from "react-icons/ai";
 import { BiBookAlt } from "react-icons/bi";
-import { RiServiceLine, RiMessage3Line } from "react-icons/ri";
+import { RiMessage3Line } from "react-icons/ri";
 
 const Nav = () => {
   const [selected, setSelected] = useState("#");
@@ -43,15 +43,15 @@ const Nav = () => {
         <BiBookAlt />
       </a>
       <a
-        href="#services"
+        href="#projects"
         className={`${
-          selected === "#services"
+          selected === "#projects"
             ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
             : ""
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
-        onClick={() => setSelected("#services")}
+        onClick={() => setSelected("#projects")}
       >
-        <RiServiceLine />
+        <AiOutlineProject />
       </a>
       <a
         href="#contact"

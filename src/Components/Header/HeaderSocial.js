@@ -7,21 +7,21 @@ const HeaderSocial = () => {
       <a
         href="https://www.linkedin.com/in/qu%C3%A2n-minh-2a862b24a/"
         target="_blank"
-        className="text-main text-2xl"
+        className="text-main text-md md:text-2xl"
       >
         <AiFillLinkedin />
       </a>
       <a
         href="https://github.com/Kin2808"
         target="_blank"
-        className="text-main text-2xl"
+        className="text-main text-md md:text-2xl"
       >
         <AiFillGithub />
       </a>
       <a
         href="https://www.facebook.com/quan.nguyen.5205/"
         target="_blank"
-        className="text-main text-2xl"
+        className="text-main text-md md:text-2xl"
       >
         <AiFillFacebook />
       </a>

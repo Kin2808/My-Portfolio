@@ -27,7 +27,7 @@ const Header = () => {
 
           <a
             href="#contact"
-            className="rotate-90 duration-200 hover:text-[rgba(77,181,255,0.4)]"
+            className="text-xs md:text-md w-24 flex-end rotate-90 duration-200 hover:text-[rgba(77,181,255,0.4)]"
           >
             Scroll down
           </a>

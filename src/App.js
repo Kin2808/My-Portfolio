@@ -3,9 +3,8 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import Nav from "./Components/Nav/Nav";
 import About from "./Components/About/About";
-import Experience from "./Components/Experience";
-import Services from "./Components/Services";
-import Portfolio from "./Components/Portfolio";
+import Experience from "./Components/Experience/Experience";
+import Projects from "./Components/Projects/Projects";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 
@@ -16,8 +15,7 @@ function App() {
       <Nav />
       <About />
       <Experience />
-      <Services />
-      <Portfolio />
+      <Projects />
       <Contact />
       <Footer />
     </>
