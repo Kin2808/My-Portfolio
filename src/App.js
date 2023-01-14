@@ -5,8 +5,8 @@ import Nav from "./Components/Nav/Nav";
 import About from "./Components/About/About";
 import Experience from "./Components/Experience/Experience";
 import Projects from "./Components/Projects/Projects";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
+import Contact from "./Components/Contact/Contact";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (

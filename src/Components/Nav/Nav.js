@@ -1,14 +1,41 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AiOutlineHome, AiOutlineUser, AiOutlineProject } from "react-icons/ai";
 import { BiBookAlt } from "react-icons/bi";
 import { RiMessage3Line } from "react-icons/ri";
 
 const Nav = () => {
   const [selected, setSelected] = useState("#");
+  // EVENT SCROLL HEADER
+  const [hideHeader, sethideHeader] = useState(false);
+  const [position, setPosition] = useState(window.pageYOffset);
+
+  // const handleScroll = () => {
+  //   let moving = window.pageYOffset;
+  //   sethideHeader(moving > position);
+  //   setPosition(moving);
+  // };
+
+  const handleScroll = useCallback(() => {
+    let moving = window.pageYOffset;
+    sethideHeader(moving > position);
+    setPosition(moving);
+  }, [position, hideHeader]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+  //END
 
   return (
-    <nav className="fixed bottom-16 left-[50%] translate-x-[-50%] p-1 rounded-3xl flex md:gap-5 bg-[rgba(0,0,0,0.3)] z-10">
+    <nav
+      className={`${
+        hideHeader ? "translate-y-[120px]" : "translate-y-0"
+      } fixed ease-linear duration-150 bottom-10 left-[50%] translate-x-[-50%] p-1 rounded-3xl flex md:gap-5 bg-[rgba(0,0,0,0.3)] z-10`}
+    >
       <a
         href="#"
         className={`${
