@@ -4,6 +4,8 @@ const { Schema, model } = mongoose;
 const blogModel = new Schema(
   {
     title: String,
+    hashtag: { type: Array, default: [] },
+    author: String,
     content: String,
   },
   { timestamps: true }
