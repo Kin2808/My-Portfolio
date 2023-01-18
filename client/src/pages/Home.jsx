@@ -35,7 +35,7 @@ const Home = () => {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-10 ">
-        <div className="w-[300px]">
+        <div className="w-[350px]">
           <img
             src={ME}
             alt="avatar"

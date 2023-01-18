@@ -17,8 +17,6 @@ const BlogDetail = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(blogDetail);
-
   return (
     <div className="container mx-auto pt-6">
       <i
@@ -44,7 +42,10 @@ const BlogDetail = () => {
               </p>
             </div>
           </div>
-          <div className="pt-10 leading-9">{blogDetail.content}</div>
+          <div
+            dangerouslySetInnerHTML={{ __html: blogDetail.content }}
+            className="pt-10 leading-9"
+          ></div>
         </div>
       )}
       <p className="text-xs text-center">© Kin | Powered by Kin</p>
