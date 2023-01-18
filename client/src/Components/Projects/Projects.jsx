@@ -19,9 +19,9 @@ const myProjects = [
   },
   {
     image: Port,
-    title: "Portfolio",
+    title: "Portfolio & Blog",
     git: "https://github.com/Kin2808/My-Portfolio",
-    demo: "",
+    demo: "https://kin-one.vercel.app/",
   },
 ];
 

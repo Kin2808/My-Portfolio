@@ -16,7 +16,7 @@ const Home = () => {
           to="/"
           className="text-white opacity-80 duration-200 hover:opacity-100"
         >
-          Kin.com
+          Kin-one.vercel.app
         </Link>
         <div className="flex gap-5">
           <Link
