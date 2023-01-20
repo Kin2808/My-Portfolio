@@ -20,6 +20,7 @@ const modules = {
     ],
     ["link", "image"],
     ["clean"],
+    ["code-block"],
   ],
 };
 
@@ -35,6 +36,7 @@ const formats = [
   "indent",
   "link",
   "image",
+  "code-block",
 ];
 
 const CreateBlog = () => {

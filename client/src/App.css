@@ -10,30 +10,46 @@ h3 {
 }
 blockquote {
   @apply text-sm
-  inline-block
    my-4
-   mx-10
-   bg-[rgba(255,255,255,0.05)] rounded-lg p-2;
+   /* md:mx-10 */
+   bg-[rgba(255,255,255,0.05)] 
+   rounded-lg 
+   p-3
+   border-l-[8px]
+   leading-8;
 }
-blockquote:before {
-  @apply text-[#ccc]
-  content-['*']
-  text-4xl
-  mr-2;
+
+.text-quill {
+  word-wrap: break-word;
 }
-blockquote:after {
-  @apply text-[#ccc]
-  content-['*']
-  text-4xl
-  ml-2;
+
+.text-quill img {
+  margin: 25px 0;
 }
+
 ul {
-  @apply list-disc
-  list-inside;
+  @apply list-inside my-4;
 }
 ol {
-  @apply list-decimal
-  list-inside;
+  @apply list-inside my-5;
+}
+ol li::before {
+  content: "#";
+  color: #4db5ff;
+  margin-right: 10px;
+}
+ol li {
+  font-size: 20px;
+  font-weight: 700;
+}
+ul li::before {
+  content: "|";
+  color: #4db5ff;
+  margin-right: 10px;
+}
+ul li {
+  font-size: 20px;
+  font-weight: 500;
 }
 ul ul,
 ol ul {
@@ -44,6 +60,10 @@ ol ol,
 ul ol {
   @apply list-inside
   ml-4;
+}
+u {
+  font-weight: 500;
+  color: #4db5ff;
 }
 
 @tailwind components;

@@ -44,11 +44,11 @@ const BlogDetail = () => {
           </div>
           <div
             dangerouslySetInnerHTML={{ __html: blogDetail.content }}
-            className="pt-10 leading-9"
+            className="text-quill pt-10 leading-10 text-sm md:text-[16px]"
           ></div>
         </div>
       )}
-      <p className="text-xs text-center">© Kin | Powered by Kin</p>
+      <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>
     </div>
   );
 };

@@ -63,7 +63,7 @@ const Blog = () => {
           </div>
         ))}
       </div>
-      <p className="text-xs text-center ">© Kin | Powered by Kin</p>
+      <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>
     </div>
   );
 };
