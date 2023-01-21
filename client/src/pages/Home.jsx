@@ -14,20 +14,20 @@ const Home = () => {
       <div className="flex justify-between ">
         <Link
           to="/"
-          className="text-white opacity-80 duration-200 hover:opacity-100"
+          className="text-white text-sm md:text-base opacity-80 duration-200 hover:opacity-100"
         >
           Kin-one.vercel.app
         </Link>
         <div className="flex gap-5">
           <Link
             to="/blog"
-            className="text-white opacity-80 duration-200 hover:opacity-100"
+            className="text-white text-sm md:text-base opacity-80 duration-200 hover:opacity-100"
           >
             My Blog
           </Link>
           <Link
             to="/info"
-            className="text-white opacity-80 duration-200 hover:opacity-100"
+            className="text-white text-sm md:text-base opacity-80 duration-200 hover:opacity-100"
           >
             About Me
           </Link>
@@ -35,14 +35,14 @@ const Home = () => {
       </div>
 
       <div className="flex flex-col items-center justify-center gap-10 ">
-        <div className="w-[350px]">
+        <div className="w-[250px] md:w-[350px]">
           <img
             src={ME}
             alt="avatar"
             className="w-full h-full object-contain rounded-full"
           />
         </div>
-        <div className="text-center">
+        <div className="text-center text-sm md:text-base">
           <h5>Hello, Mình là Quân!</h5>
           <h5>Một lập trình viên tại Đà Nẵng - thành phố của những cây cầu</h5>
           <Link to="/info" className="text-xs">

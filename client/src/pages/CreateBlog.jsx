@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import toast, { Toaster } from "react-hot-toast";
 
 import { BsArrowLeft } from "react-icons/bs";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const modules = {
   toolbar: [
@@ -41,6 +42,7 @@ const formats = [
 
 const CreateBlog = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, setValue, watch } = useForm();
 
   useEffect(() => {
@@ -53,22 +55,34 @@ const CreateBlog = () => {
   const editorContent = watch("content");
 
   const createNewBlog = async (data) => {
-    const arr = data.hashtag.split(", ");
-    await axios
-      .post(`${process.env.REACT_APP_BASE_URL}/blog`, {
-        title: data.title,
-        author: data.author,
-        hashtag: arr,
-        content: data.content,
-      })
-      .then(() => {
-        toast.success("Successfully Created!");
-        setTimeout(() => {
-          navigate("/blog");
-        }, 2000);
+    try {
+      const arr = data.hashtag.split(", ");
+      setLoading(true);
+      await axios
+        .post(`${process.env.REACT_APP_BASE_URL}/blog`, {
+          title: data.title,
+          author: data.author,
+          hashtag: arr,
+          content: data.content,
+        })
+        .then(() => {
+          toast.success("Successfully Created!");
+          setLoading(false);
+          setTimeout(() => {
+            navigate("/blog");
+          }, 2000);
+        });
+    } catch (error) {
+      toast({
+        title: "Something wrong here",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
       });
+    }
   };
-
+  
   return (
     <div className="container mx-auto pt-6 h-[100vh]">
       <Toaster position="top-center" reverseOrder={false} />
@@ -104,8 +118,14 @@ const CreateBlog = () => {
         />
         <button
           type="submit"
-          className="px-5 py-2 mt-5 border border-main rounded-2xl"
+          disabled={loading}
+          className="flex items-center px-5 py-2 mt-5 border border-main rounded-2xl duration-200 opacity-80 hover:opacity-100 cursor-pointer"
         >
+          {loading && (
+            <i className={`${loading && "animate-spin"} text-main mr-2`}>
+              <AiOutlineLoading3Quarters />
+            </i>
+          )}
           Create New Post
         </button>
       </form>
