@@ -67,22 +67,16 @@ const CreateBlog = () => {
         })
         .then(() => {
           toast.success("Successfully Created!");
-          setLoading(false);
           setTimeout(() => {
             navigate("/blog");
-          }, 2000);
+          }, 1000);
+          setLoading(false);
         });
     } catch (error) {
-      toast({
-        title: "Something wrong here",
-        description: error.response.data.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
+      toast.error("Something wrong here");
     }
   };
-  
+
   return (
     <div className="container mx-auto pt-6 h-[100vh]">
       <Toaster position="top-center" reverseOrder={false} />
