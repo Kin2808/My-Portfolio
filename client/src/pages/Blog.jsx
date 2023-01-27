@@ -39,9 +39,9 @@ const Blog = () => {
         </h5>
         <h5>Nếu bạn có vô tình lướt qua đây thì cũng đừng cười mình nhen"</h5>
       </div>
-      <div className="flex items-center justify-center gap-5 py-5 after:content-[''] after:w-40 after:h-[1px] after:bg-gray before:content-[''] before:w-40 before:h-[1px] before:bg-gray">
+      <div className="flex items-center justify-center gap-5 py-5 after:content-[''] after:w-40 after:h-[1px] after:bg-gray-500 before:content-[''] before:w-40 before:h-[1px] before:bg-gray-500">
         <button
-          className="p-5 text-gray border border-gray rounded-full duration-200 hover:border-main2 hover:text-main2"
+          className="p-5 text-gray border border-gray rounded-full"
           onClick={() => navigate("/blog/create")}
         >
           <AiOutlinePlus />

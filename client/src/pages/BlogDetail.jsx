@@ -4,6 +4,7 @@ import moment from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { BsArrowLeft } from "react-icons/bs";
+import { TbEdit } from "react-icons/tb";
 import Loading from "../Components/Loading";
 
 const BlogDetail = () => {
@@ -23,14 +24,28 @@ const BlogDetail = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const update = () => {
+    let answer = prompt("chọn 1 số ngẫu nhiên");
+    if (answer === "798082") {
+      navigate(`/blog/create/${id}`);
+    } else {
+      alert("chúc bạn may mắn lần sau!");
+    }
+  };
+
   return (
     <div className="container mx-auto pt-6">
-      <i
-        className="text-3xl md:text-5xl opacity-80 hover:opacity-100 cursor-pointer"
-        onClick={() => navigate("/blog")}
-      >
-        <BsArrowLeft className="hover:animate-wiggle" />
-      </i>
+      <div className="flex justify-between items-center">
+        <i
+          className="text-3xl md:text-5xl opacity-80 hover:opacity-100 cursor-pointer"
+          onClick={() => navigate("/blog")}
+        >
+          <BsArrowLeft className="hover:animate-wiggle" />
+        </i>
+        <button className="text-3xl  opacity-80 hover:opacity-100 cursor-pointe" onClick={update}>
+          <TbEdit />
+        </button>
+      </div>
       <div className="pt-10 lg:px-72">
         {loading ? (
           <Loading />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import ReactQuill from "react-quill";
@@ -41,24 +41,47 @@ const formats = [
 ];
 
 const CreateBlog = () => {
+  let { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, setValue, watch } = useForm();
+  const { register, handleSubmit, setValue, watch, reset } = useForm();
 
   useEffect(() => {
     register("content");
   }, [register]);
+
+  const fetchBlogToUpdate = async () => {
+    try {
+      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`);
+      let temp = await res.data;
+      setValue("title", temp.title);
+      setValue("author", temp.author);
+      setValue("hashtag", temp.hashtag);
+      setValue("content", temp.content);
+      return temp;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      fetchBlogToUpdate();
+    } else {
+      reset();
+    }
+  }, [id]);
 
   const onEditorStateChange = (editorState) => {
     setValue("content", editorState);
   };
   const editorContent = watch("content");
 
-  const createNewBlog = async (data) => {
+  const createNewBlog = (data) => {
     try {
       const arr = data.hashtag.split(", ");
       setLoading(true);
-      await axios
+      axios
         .post(`${process.env.REACT_APP_BASE_URL}/blog`, {
           title: data.title,
           author: data.author,
@@ -72,6 +95,41 @@ const CreateBlog = () => {
           }, 1000);
           setLoading(false);
         });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateBlog = (data) => {
+    try {
+      let dataUpdate = {
+        title: data.title,
+        author: data.author,
+        hashtag: data.hashtag,
+        content: data.content,
+      };
+      setLoading(true);
+      axios
+        .put(`${process.env.REACT_APP_BASE_URL}/blog/${id}`, dataUpdate)
+        .then(() => {
+          toast.success("Successfully Updated!");
+          setTimeout(() => {
+            navigate("/blog");
+          }, 1000);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSubmit = (data) => {
+    try {
+      if (id) {
+        updateBlog(data);
+      } else {
+        createNewBlog(data);
+      }
     } catch (error) {
       toast.error("Something wrong here");
     }
@@ -87,7 +145,7 @@ const CreateBlog = () => {
         <BsArrowLeft className="hover:animate-wiggle" />
       </i>
 
-      <form onSubmit={handleSubmit(createNewBlog)} className="md:pt-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="md:pt-10">
         <div className="flex items-center gap-5">
           <label>Title:</label>
           <input {...register("title")} className="w-full border-white" />
@@ -120,7 +178,7 @@ const CreateBlog = () => {
               <AiOutlineLoading3Quarters />
             </i>
           )}
-          Create New Post
+          Submit
         </button>
       </form>
     </div>

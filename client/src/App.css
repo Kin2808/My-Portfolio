@@ -65,7 +65,9 @@ u {
   font-weight: 500;
   color: #4db5ff;
 }
-
+.ql-indent-1 {
+  padding-left: 2.5rem;
+}
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
