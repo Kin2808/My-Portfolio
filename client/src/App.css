@@ -68,6 +68,9 @@ u {
 .ql-indent-1 {
   padding-left: 2.5rem;
 }
+.ql-indent-1::before {
+  content: "+ ";
+}
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
