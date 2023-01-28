@@ -4,14 +4,17 @@ import moment from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { BsArrowLeft } from "react-icons/bs";
-import { TbEdit } from "react-icons/tb";
+
+import { BsThreeDotsVertical } from "react-icons/bs";
 import Loading from "../Components/Loading";
+import EditModal from "../Components/EditModal";
 
 const BlogDetail = () => {
   const navigate = useNavigate();
   let { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [blogDetail, setBlogDetail] = useState("");
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -24,10 +27,22 @@ const BlogDetail = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const update = () => {
+  const updateBlog = () => {
     let answer = prompt("chọn 1 số ngẫu nhiên");
-    if (answer === "798082") {
+    if (answer === process.env.REACT_APP_SECRET_KEY) {
       navigate(`/blog/create/${id}`);
+    } else {
+      alert("chúc bạn may mắn lần sau!");
+    }
+  };
+
+  const deleteBlog = () => {
+    let answer = prompt("chọn 1 số ngẫu nhiên");
+    if (answer === process.env.REACT_APP_SECRET_KEY) {
+      axios
+        .delete(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
+        .then(() => navigate("/blog"))
+        .catch((err) => console.log(err));
     } else {
       alert("chúc bạn may mắn lần sau!");
     }
@@ -36,16 +51,26 @@ const BlogDetail = () => {
   return (
     <div className="container mx-auto pt-6">
       <div className="flex justify-between items-center">
-        <i
-          className="text-3xl md:text-5xl opacity-80 hover:opacity-100 cursor-pointer"
+        <button
+          className="text-3xl opacity-80 hover:opacity-100"
           onClick={() => navigate("/blog")}
         >
           <BsArrowLeft className="hover:animate-wiggle" />
-        </i>
-        <button className="text-3xl  opacity-80 hover:opacity-100 cursor-pointe" onClick={update}>
-          <TbEdit />
         </button>
+
+        <div
+          className="relative"
+          onClick={() => setOpenEditModal((prev) => !prev)}
+        >
+          <button className="text-xl opacity-80 hover:opacity-100 cursor-pointer">
+            <BsThreeDotsVertical />
+          </button>
+          {openEditModal && (
+            <EditModal updateBlog={updateBlog} deleteBlog={deleteBlog} />
+          )}
+        </div>
       </div>
+
       <div className="pt-10 lg:px-72">
         {loading ? (
           <Loading />

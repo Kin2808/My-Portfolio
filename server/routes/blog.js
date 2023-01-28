@@ -49,7 +49,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const blog = await Blog.findByIdAndDelete(id);
-    res.status(500).json(blog);
+    res.status(200).json(blog);
   } catch (error) {
     res.status(500).json(error);
   }
