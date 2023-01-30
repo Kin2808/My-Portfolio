@@ -2,6 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 var logger = require("morgan");
 var cors = require("cors");
 var dotenv = require("dotenv");
@@ -35,7 +36,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(cors({ origin: "*"}));
+app.use(bodyParser.json({ limit: "30mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
+app.use(cors({ origin: "*" }));
 
 app.use("/blog", blogRouter);
 

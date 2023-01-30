@@ -3,10 +3,10 @@ const { Schema, model } = mongoose;
 
 const blogModel = new Schema(
   {
-    title: String,
+    title: { type: String, required: true },
     hashtag: { type: Array, default: [] },
-    author: String,
-    content: String,
+    author: { type: String, default: "kin" },
+    content: { type: String, required: true },
   },
   { timestamps: true }
 );
