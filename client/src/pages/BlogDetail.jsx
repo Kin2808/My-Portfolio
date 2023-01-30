@@ -29,7 +29,7 @@ const BlogDetail = () => {
 
   const updateBlog = () => {
     let answer = prompt("chọn 1 số ngẫu nhiên");
-    if (answer === process.env.REACT_APP_SECRET_KEY) {
+    if (answer === String(process.env.REACT_APP_SECRET_KEY)) {
       navigate(`/blog/create/${id}`);
     } else {
       alert("chúc bạn may mắn lần sau!");
@@ -38,7 +38,7 @@ const BlogDetail = () => {
 
   const deleteBlog = () => {
     let answer = prompt("chọn 1 số ngẫu nhiên");
-    if (answer === process.env.REACT_APP_SECRET_KEY) {
+    if (answer === String(process.env.REACT_APP_SECRET_KEY)) {
       axios
         .delete(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
         .then(() => navigate("/blog"))
