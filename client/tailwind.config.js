@@ -20,6 +20,8 @@ module.exports = {
       black: "#000",
       gray: "#ccc",
       white: "#fff",
+      borderGray: "#33344e",
+      background: "#1f1f2c",
     },
     extend: {
       animation: {
