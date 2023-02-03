@@ -8,6 +8,10 @@ h2 {
 h3 {
   @apply text-lg;
 }
+pre {
+  @apply font-mono
+  bg-[#23241f] text-white rounded-xl p-5;
+}
 blockquote {
   @apply text-sm
    my-4
