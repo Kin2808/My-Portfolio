@@ -10,7 +10,18 @@ h3 {
 }
 pre {
   @apply font-mono
-  bg-[#23241f] text-white rounded-xl p-5;
+  bg-[#23241f]
+  border border-[#ccc]
+  border-l-4 border-l-[#f36d33]
+  text-[#f6f6f6]
+  break-inside-avoid
+  leading-7
+  mb-6
+  max-w-full
+  overflow-auto
+  py-4 px-6
+  block
+  break-words;
 }
 blockquote {
   @apply text-sm
