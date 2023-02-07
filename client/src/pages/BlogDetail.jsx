@@ -3,9 +3,11 @@ import axios from "axios";
 import moment from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { BsArrowLeft } from "react-icons/bs";
-
-import { BsThreeDotsVertical } from "react-icons/bs";
+import {
+  BsThreeDotsVertical,
+  BsFillArrowUpCircleFill,
+  BsArrowLeft,
+} from "react-icons/bs";
 import Loading from "../Components/Loading";
 import EditModal from "../Components/EditModal";
 
@@ -15,6 +17,7 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(false);
   const [blogDetail, setBlogDetail] = useState("");
   const [openEditModal, setOpenEditModal] = useState(false);
+  const [hideBtnScrollTop, setHideBtnScrollTop] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -48,8 +51,28 @@ const BlogDetail = () => {
     }
   };
 
+  const handleScroll = () => {
+    let moving = window.pageYOffset;
+    if (moving > 20) {
+      setHideBtnScrollTop(true);
+    } else {
+      setHideBtnScrollTop(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
+
+  const scrollTop = () => {
+    document.documentElement.scrollTop = 0;
+  };
+
   return (
-    <div className="container mx-auto pt-6">
+    <div className="container relative mx-auto pt-6">
       <div className="flex justify-between items-center">
         <button
           className="text-3xl opacity-80 hover:opacity-100"
@@ -98,7 +121,17 @@ const BlogDetail = () => {
           </>
         )}
       </div>
+
       <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>
+
+      <button
+        className={`${
+          hideBtnScrollTop ? "fixed bottom-[5%] right-[10%] " : "none"
+        } text-[50px] opacity-50 text-main`}
+        onClick={scrollTop}
+      >
+        <BsFillArrowUpCircleFill />
+      </button>
     </div>
   );
 };
