@@ -17,7 +17,7 @@ const BlogDetail = () => {
   const [loading, setLoading] = useState(false);
   const [blogDetail, setBlogDetail] = useState("");
   const [openEditModal, setOpenEditModal] = useState(false);
-  const [hideBtnScrollTop, setHideBtnScrollTop] = useState(true);
+  const [hideBtnScrollTop, setHideBtnScrollTop] = useState(false);
 
   useEffect(() => {
     setLoading(true);
