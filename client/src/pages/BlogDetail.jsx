@@ -13,7 +13,7 @@ import EditModal from "../Components/EditModal";
 
 const BlogDetail = () => {
   const navigate = useNavigate();
-  let { id } = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [blogDetail, setBlogDetail] = useState("");
   const [openEditModal, setOpenEditModal] = useState(false);
@@ -28,7 +28,7 @@ const BlogDetail = () => {
         setBlogDetail(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
   const updateBlog = () => {
     let answer = prompt("chọn 1 số ngẫu nhiên");
@@ -53,11 +53,7 @@ const BlogDetail = () => {
 
   const handleScroll = () => {
     let moving = window.pageYOffset;
-    if (moving > 20) {
-      setHideBtnScrollTop(true);
-    } else {
-      setHideBtnScrollTop(false);
-    }
+    moving > 20 ? setHideBtnScrollTop(true) : setHideBtnScrollTop(false);
   };
 
   useEffect(() => {
@@ -126,7 +122,7 @@ const BlogDetail = () => {
 
       <button
         className={`${
-          hideBtnScrollTop ? "fixed bottom-[5%] right-[10%] " : "none"
+          hideBtnScrollTop && "fixed bottom-[5%] right-[10%]"
         } text-[50px] opacity-50 text-main`}
         onClick={scrollTop}
       >

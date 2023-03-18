@@ -1,29 +1,5 @@
 import React from "react";
-
-import ProjectImg from "../../assets/project-planning-header@2x.png";
-import Ecom from "../../assets/ecom.png";
-import Port from "../../assets/portlofi.png";
-
-const myProjects = [
-  {
-    image: Ecom,
-    title: "E-commerce",
-    git: "https://github.com/inferno332/Ecommerce_shop",
-    demo: "https://ls-eshop.vercel.app/",
-  },
-  {
-    image: ProjectImg,
-    title: "Mini Quiz",
-    git: "https://github.com/Kin2808/miniQuiz-client",
-    git1: "https://github.com/Kin2808/miniQuiz-server",
-  },
-  {
-    image: Port,
-    title: "Portfolio & Blog",
-    git: "https://github.com/Kin2808/My-Portfolio",
-    demo: "https://kin-one.vercel.app/",
-  },
-];
+import { myProjects } from "./ProjectDatas";
 
 const Projects = () => {
   return (
@@ -49,20 +25,25 @@ const Projects = () => {
             <h5 className="pl-5">{item.title}</h5>
             <div className="pl-5 py-5">
               <button className="border border-main rounded-xl p-3 mr-2 text-main duration-200 hover:scale-105">
-                <a href={item.git} target="_blank">
+                <a href={item.git} target="_blank" rel="noreferrer">
                   Github
                 </a>
               </button>
               {item.demo && (
                 <button className="bg-main rounded-xl p-3 duration-200 hover:scale-105">
-                  <a href={item.demo} target="_blank" className="text-black">
+                  <a
+                    href={item.demo}
+                    target="_blank"
+                    className="text-black"
+                    rel="noreferrer"
+                  >
                     Live demo
                   </a>
                 </button>
               )}
               {item.git1 && (
                 <button className="border border-main rounded-xl p-3 mr-2 text-main duration-200 hover:scale-105">
-                  <a href={item.git} target="_blank">
+                  <a href={item.git} target="_blank" rel="noreferrer">
                     Github Server
                   </a>
                 </button>

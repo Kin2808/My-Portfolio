@@ -8,6 +8,7 @@ const HeaderSocial = () => {
         href="https://www.linkedin.com/in/qu%C3%A2n-minh-2a862b24a/"
         target="_blank"
         className="text-main text-md md:text-2xl"
+        rel="noreferrer"
       >
         <AiFillLinkedin />
       </a>
@@ -15,6 +16,7 @@ const HeaderSocial = () => {
         href="https://github.com/Kin2808"
         target="_blank"
         className="text-main text-md md:text-2xl"
+        rel="noreferrer"
       >
         <AiFillGithub />
       </a>
@@ -22,6 +24,7 @@ const HeaderSocial = () => {
         href="https://www.facebook.com/quan.nguyen.5205/"
         target="_blank"
         className="text-main text-md md:text-2xl"
+        rel="noreferrer"
       >
         <AiFillFacebook />
       </a>

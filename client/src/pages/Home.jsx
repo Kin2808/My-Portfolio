@@ -61,6 +61,7 @@ const Home = () => {
             href="https://www.facebook.com/quan.nguyen.5205/"
             target="_blank"
             className="tooltip opacity-80 duration-200 hover:opacity-100"
+            rel="noreferrer"
           >
             <AiOutlineFacebook />{" "}
             <div className="tooltiptext text-xs">Facebook</div>
@@ -69,6 +70,7 @@ const Home = () => {
             href="https://www.linkedin.com/in/qu%C3%A2n-minh-2a862b24a/"
             target="_blank"
             className="tooltip opacity-80 duration-200 hover:opacity-100"
+            rel="noreferrer"
           >
             <AiOutlineLinkedin />{" "}
             <div className="tooltiptext text-xs">Linkedin</div>
@@ -77,6 +79,7 @@ const Home = () => {
             href="https://github.com/Kin2808"
             target="_blank"
             className="tooltip opacity-80 duration-200 hover:opacity-100"
+            rel="noreferrer"
           >
             <AiOutlineGithub />{" "}
             <div className="tooltiptext text-xs">Github</div>

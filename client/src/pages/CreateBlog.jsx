@@ -41,7 +41,7 @@ const formats = [
 ];
 
 const CreateBlog = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit, setValue, watch, reset } = useForm();
@@ -52,8 +52,10 @@ const CreateBlog = () => {
 
   const fetchBlogToUpdate = async () => {
     try {
-      let res = await axios.get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`);
-      let temp = await res.data;
+      const res = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/blog/${id}`
+      );
+      const temp = await res.data;
       setValue("title", temp.title);
       setValue("author", temp.author);
       setValue("hashtag", temp.hashtag);
@@ -70,6 +72,7 @@ const CreateBlog = () => {
     } else {
       reset();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const onEditorStateChange = (editorState) => {

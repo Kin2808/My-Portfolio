@@ -14,7 +14,7 @@ const Nav = () => {
     let moving = window.pageYOffset;
     sethideHeader(moving > position);
     setPosition(moving);
-  }, [position, hideHeader]);
+  }, [position]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -33,9 +33,8 @@ const Nav = () => {
       <a
         href="#"
         className={`${
-          selected === "#"
-            ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
-            : ""
+          selected === "#" &&
+          "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
         onClick={() => setSelected("#")}
       >
@@ -44,9 +43,8 @@ const Nav = () => {
       <a
         href="#about"
         className={`${
-          selected === "#about"
-            ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
-            : ""
+          selected === "#about" &&
+          "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
         onClick={() => setSelected("#about")}
       >
@@ -55,9 +53,8 @@ const Nav = () => {
       <a
         href="#experience"
         className={`${
-          selected === "#experience"
-            ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
-            : ""
+          selected === "#experience" &&
+          "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
         onClick={() => setSelected("#experience")}
       >
@@ -66,9 +63,8 @@ const Nav = () => {
       <a
         href="#projects"
         className={`${
-          selected === "#projects"
-            ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
-            : ""
+          selected === "#projects" &&
+          "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
         onClick={() => setSelected("#projects")}
       >
@@ -77,9 +73,8 @@ const Nav = () => {
       <a
         href="#contact"
         className={`${
-          selected === "#contact"
-            ? "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
-            : ""
+          selected === "#contact" &&
+          "bg-[rgba(77,181,255,0.5)] text-white rounded-full"
         } p-5 md:p-7 duration-200  hover:text-[rgba(77,181,255,0.5)]`}
         onClick={() => setSelected("#contact")}
       >

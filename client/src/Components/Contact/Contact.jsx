@@ -1,27 +1,6 @@
 import React from "react";
-import { GrMail } from "react-icons/gr";
-import { FaFacebookMessenger, FaLinkedin } from "react-icons/fa";
+import { ContactDatas } from "./ContactDatas";
 
-const contact = [
-  {
-    icon: <GrMail />,
-    title: "Email",
-    info: "kin0905152701@gmail.com",
-    link: "mailto:kin0905152701@gmail.com",
-  },
-  {
-    icon: <FaFacebookMessenger />,
-    title: "Messenger",
-    info: "Kin Nguyễn",
-    link: "https://www.facebook.com/messages/t/100003134161056",
-  },
-  {
-    icon: <FaLinkedin />,
-    title: "LinkedIn",
-    info: "Minh Quân",
-    link: "https://www.linkedin.com/in/qu%C3%A2n-minh-2a862b24a/",
-  },
-];
 
 const Contact = () => {
   return (
@@ -32,7 +11,7 @@ const Contact = () => {
       </div>
 
       <div className="mt-16 grid lg:grid-cols-3 gap-5">
-        {contact.map((item, index) => (
+        {ContactDatas.map((item, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-between p-5 h-[200px] bg-[#2a2a67] rounded-2xl "
