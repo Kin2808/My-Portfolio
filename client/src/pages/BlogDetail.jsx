@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -9,21 +9,23 @@ import {
 } from "react-icons/bs";
 import Loading from "../Components/Loading";
 import EditModal from "../Components/EditModal";
+import Detail from "../Components/Blog/Detail";
 
 const BlogDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [blogDetail, setBlogDetail] = useState({});
+  const [loading, setLoading] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [hideBtnScrollTop, setHideBtnScrollTop] = useState(false);
 
-  const Detail = React.lazy(() => import("../Components/Blog/Detail"))
-
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
       .then((res) => {
         setBlogDetail(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -89,9 +91,7 @@ const BlogDetail = () => {
       </div>
 
       <div className="pt-10 lg:px-72">
-        <Suspense fallback={<Loading />}>
-          <Detail blogDetail={blogDetail} />
-        </Suspense>
+        {loading ? <Loading /> : <Detail blogDetail={blogDetail} />}
       </div>
 
       <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>

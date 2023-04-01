@@ -1,22 +1,24 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
 import Loading from "../Components/Loading";
+import BlogItems from "../Components/Blog/BlogItems";
 
 const Blog = () => {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
-
-  const BlogItems = React.lazy(() => import("../Components/Blog/BlogItems"));
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/blog`)
       .then((res) => {
         setBlogs(res.data);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -47,9 +49,7 @@ const Blog = () => {
       </div>
 
       <div className="lg:px-10 xl:px-64">
-        <Suspense fallback={<Loading />}>
-          <BlogItems blogs={blogs} />
-        </Suspense>
+        {loading ? <Loading /> : <BlogItems blogs={blogs} />}
       </div>
 
       <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>
