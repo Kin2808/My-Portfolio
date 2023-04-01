@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "axios";
-import moment from "moment";
 import { useNavigate, useParams } from "react-router-dom";
 
 import {
@@ -14,17 +13,16 @@ import EditModal from "../Components/EditModal";
 const BlogDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const [loading, setLoading] = useState(false);
-  const [blogDetail, setBlogDetail] = useState("");
+  const [blogDetail, setBlogDetail] = useState({});
   const [openEditModal, setOpenEditModal] = useState(false);
   const [hideBtnScrollTop, setHideBtnScrollTop] = useState(false);
 
+  const Detail = React.lazy(() => import("../Components/Blog/Detail"))
+
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/blog/${id}`)
       .then((res) => {
-        setLoading(false);
         setBlogDetail(res.data);
       })
       .catch((err) => console.log(err));
@@ -91,31 +89,9 @@ const BlogDetail = () => {
       </div>
 
       <div className="pt-10 lg:px-72">
-        {loading ? (
-          <Loading />
-        ) : (
-          <>
-            <h1 className="text-2xl font-semibold pb-2">{blogDetail.title}</h1>
-            <div className="flex items-center gap-5 text-sm">
-              <div className="flex gap-2">
-                <p className="text-gray">Author:</p>
-                <p className="text-main2">{blogDetail.author}</p>
-              </div>
-              <div className="flex gap-2">
-                <p className="text-gray">Date:</p>
-                <p className="text-main2">
-                  {moment(blogDetail.createdAt)
-                    .format("D M Y")
-                    .replaceAll(" ", "-")}
-                </p>
-              </div>
-            </div>
-            <div
-              dangerouslySetInnerHTML={{ __html: blogDetail.content }}
-              className="text-quill pt-10 leading-10 text-sm md:text-[16px]"
-            ></div>
-          </>
-        )}
+        <Suspense fallback={<Loading />}>
+          <Detail blogDetail={blogDetail} />
+        </Suspense>
       </div>
 
       <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>

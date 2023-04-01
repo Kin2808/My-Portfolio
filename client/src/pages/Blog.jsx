@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import moment from "moment";
 
 import { BsArrowLeft } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -9,15 +8,14 @@ import Loading from "../Components/Loading";
 
 const Blog = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
 
+  const BlogItems = React.lazy(() => import("../Components/Blog/BlogItems"));
+
   useEffect(() => {
-    setLoading(true);
     axios
       .get(`${process.env.REACT_APP_BASE_URL}/blog`)
       .then((res) => {
-        setLoading(false);
         setBlogs(res.data);
       })
       .catch((err) => console.log(err));
@@ -49,30 +47,11 @@ const Blog = () => {
       </div>
 
       <div className="lg:px-10 xl:px-64">
-        {loading ? (
-          <Loading />
-        ) : (
-          blogs.map((item) => (
-            <div
-              key={item._id}
-              className="flex flex-col md:flex-row justify-between pb-5"
-            >
-              <div className="md:flex items-center gap-5">
-                <Link
-                  to={`/blog/${item._id}`}
-                  className="text-sm md:text-md font-semibold text-white duration-200 hover:text-main2"
-                >
-                  {item.title}
-                </Link>
-                <p className="text-xs text-gray">{item.hashtag}</p>
-              </div>
-              <p className="text-gray">
-                {moment(item.createdAt).format("D M Y").replaceAll(" ", "-")}
-              </p>
-            </div>
-          ))
-        )}
+        <Suspense fallback={<Loading />}>
+          <BlogItems blogs={blogs} />
+        </Suspense>
       </div>
+
       <p className="text-xs text-center my-10">© Kin | Powered by Kin</p>
     </div>
   );
